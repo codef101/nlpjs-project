@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,10 @@ Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['
 
 Route::group(['auth'], function() {
     Route::get('shoping')->name('shoping');
+});
+
+Route::group(['middleware' => ['auth'], 'prefix' => 'a', 'as' => 'admin.'], function() {
+    Route::get('dashboard', [AdminController::class,'dashboard'])->name('dashboard');
 });
 
 require __DIR__.'/auth.php';

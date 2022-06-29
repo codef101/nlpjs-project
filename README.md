@@ -1,4 +1,4 @@
-## About Laravel
+## About Project
 
 Chatbot utilizing @nlpjs/nlp package for any typical online shop.
 

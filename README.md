@@ -12,9 +12,13 @@ Chatbot utilizing @nlpjs/nlp package for any typical online shop.
 git clone https://github.com/joseahb/nlpjs-project.git
 
 ```
-- copy ```
+- copy 
+```.env.example
 
-.env.example``` to ``.env`` and fill in db details
+```
+to 
+```
+.env
 
 - cd to project and run the following commands
 
@@ -22,8 +26,6 @@ git clone https://github.com/joseahb/nlpjs-project.git
 ```
 composer install
 ```
-
-- Install node modules
 
 ```
 npm Install

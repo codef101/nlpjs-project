@@ -12,16 +12,9 @@ Chatbot utilizing @nlpjs/nlp package for any typical online shop.
 git clone https://github.com/joseahb/nlpjs-project.git
 
 ```
-- copy 
-```.env.example
-
-```
-to 
-```
-.env
+- copy  ```.env.example``` to ```.env``` 
 
 - cd to project and run the following commands
-
 
 ```
 composer install
@@ -41,3 +34,12 @@ php artisan migrate --seed
 php artisan migrate --seed
 ```
 
+```
+npm install -g browserify //install node compiler
+
+```
+
+```
+browserify.cmd .\resources\js\chatbot.js -o .\public\js\chatbot.js // compile nlp node code into public dir
+
+```

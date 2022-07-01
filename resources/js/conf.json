@@ -1,0 +1,10 @@
+{
+    "settings": {
+      "nlp": {
+        "corpora": [
+          "http://localhost:8000"
+        ]
+      }
+    },
+    "use": ["Basic"]
+  }

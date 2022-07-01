@@ -1,6 +1,6 @@
-const { StopwordsEn } = require('@nlpjs/lang-en');
+const core = require('@nlpjs/core');
+const nlp = require('@nlpjs/nlp');
+const langenmin = require('@nlpjs/lang-en-min');
+const requestrn = require('@nlpjs/request-rn');
 
-const stopwords = new StopwordsEn();
-stopwords.dictionary = {};
-stopwords.build(['is', 'your']);
-console.log(stopwords.removeStopwords(['who', 'is', 'your', 'develop']));
+window.nlpjs = { ...core, ...nlp, ...langenmin, ...requestrn };

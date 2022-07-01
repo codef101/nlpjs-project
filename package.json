@@ -7,7 +7,8 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "build": "browserify resources/js/chatbot.js | terser --compress --mangle > public/js/chatbot.js"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.4.0",
@@ -17,10 +18,16 @@
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.4.6",
-        "tailwindcss": "^3.1.0"
+        "tailwindcss": "^3.1.0",
+        "@nlpjs/core": "^4.14.0",
+        "@nlpjs/lang-en-min": "^4.14.0",
+        "@nlpjs/nlp": "^4.15.0",
+        "@nlpjs/request-rn": "^4.14.3",
+        "terser": "^5.3.8"
     },
     "dependencies": {
         "@nlpjs/lang-en": "^4.23.4",
-        "browserify": "^17.0.0"
+        "browserify": "^17.0.0",
+        "nlpjs": "^0.0.2"
     }
 }

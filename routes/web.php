@@ -27,6 +27,9 @@ Route::group(['auth'], function() {
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'a', 'as' => 'admin.'], function() {
     Route::get('dashboard', [AdminController::class,'dashboard'])->name('dashboard');
+    Route::get('products', [AdminController::class,'products'])->name('products');
+    Route::get('orders', [AdminController::class,'orders'])->name('orders');
+    Route::get('knowledge', [AdminController::class,'knowledge'])->name('knowledge');
 });
 
 require __DIR__.'/auth.php';

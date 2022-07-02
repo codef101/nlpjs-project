@@ -181,10 +181,10 @@
             /**********************/
 
 
-            async function botReply(userMessage) {
-                const reply = await generateReply(userMessage);
-                if (typeof reply === "string") postBotReply(reply);
-                else postBotReply(reply);
+            function botReply(userMessage) {
+                $.post("http://localhost:5000/message",{'message':userMessage} , function(data, status){
+                    postBotReply(data);
+                });
             };
 
             async function generateReply(userMessage) {

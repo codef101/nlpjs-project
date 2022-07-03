@@ -73,12 +73,12 @@
                         </li>
                         <li class="items-center">
                             <a class="{{ Request::is('a/orders') ? 'text-pink-500 hover:text-pink-600' : ' text-blueGray-700 hover:text-blueGray-500' }}  text-xs uppercase py-3 font-bold block"
-                                href="{{ route('admin.orders')}}"><i class="fas fa-dollar-sign text-blueGray-400 mr-2 text-sm"></i>
+                                href="{{ route('admin.orders.index')}}"><i class="fas fa-dollar-sign text-blueGray-400 mr-2 text-sm"></i>
                                 Orders</a>
                         </li>
                         <li class="items-center">
                             <a class="{{ Request::is('a/products') ? 'text-pink-500 hover:text-pink-600' : ' text-blueGray-700 hover:text-blueGray-500' }} text-xs uppercase py-3 font-bold block"
-                                href="{{ route('admin.products')}}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
+                                href="{{ route('admin.products.index')}}"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
                                 products</a>
                         </li>
                         <li class="items-center">

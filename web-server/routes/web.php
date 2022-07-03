@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailsController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,17 +22,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
+
 
 Route::group(['auth'], function() {
-    Route::get('shoping')->name('shoping');
+    Route::get('shopping', [DashboardController::class,'shopping'])->name('shopping');
+    Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
 });
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'a', 'as' => 'admin.'], function() {
     Route::get('dashboard', [AdminController::class,'dashboard'])->name('dashboard');
-    Route::get('products', [AdminController::class,'products'])->name('products');
-    Route::get('orders', [AdminController::class,'orders'])->name('orders');
     Route::get('knowledge', [AdminController::class,'knowledge'])->name('knowledge');
+    Route::get('update-corpus', [AdminController::class,'update-corpus'])->name('corpus');
+    Route::resource('products', ProductController::class);
+    Route::resource('orders', OrderController::class);
+    Route::resource('order-details', OrderDetailsController::class);
 });
+
 
 require __DIR__.'/auth.php';

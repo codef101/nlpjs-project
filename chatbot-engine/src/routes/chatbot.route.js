@@ -15,5 +15,7 @@ const chatbotController = require('../controllers/chatbot.controller');
 
 router.route('/')
     .post(chatbotController.get);
+router.route('/corpus')
+    .get(chatbotController.getCorpus);
 
 module.exports = router;

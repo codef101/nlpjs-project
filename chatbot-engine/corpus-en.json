@@ -1,7 +1,26 @@
 {
   "name": "Corpus",
   "locale": "en-US",
+  "contextData": "./products.json",
   "data": [
+    {
+      "intent": "product.price",
+      "utterances": [
+        "what is the price of @product?"
+      ],
+      "answers": [
+        "The price of {{ product }} is {{ _data[entities.product.option].price }} per {{ _data[entities.product.option].quantity }}"
+      ]
+    },
+    {
+      "intent": "product.buy",
+      "utterances": [
+        "buy @product?"
+      ],
+      "answers": [
+        "Ok placing order for you. Our agent will contact you to confirm payment"
+      ]
+    },
     {
       "intent": "agent.whereami",
       "utterances": [
@@ -876,16 +895,6 @@
         "I'm not sure I'll have the best answer, but I'll try"
       ]
     },
-    
-    {
-      "intent": "user.buy",
-      "utterances": [
-        "I want to buy @product"
-      ],
-      "answers": [
-        "alright perfect we are processing you request"
-      ]
-    },
     {
       "intent": "None",
       "utterances": [
@@ -902,9 +911,8 @@
   "entities": {
     "product": {
       "options": {
-        "spiderman": ["spiderman", "spider-man"],
-        "ironman": ["ironman", "iron-man"],
-        "thor": ["thor"]
+        "soko": ["soko"],
+        "rice": ["rice"]
       }
     }
   }

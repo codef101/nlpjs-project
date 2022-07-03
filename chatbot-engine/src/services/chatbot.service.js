@@ -8,28 +8,39 @@
   Copyright IBM Corporation 2020
 */
 
-const { dockStart } = require('@nlpjs/basic');
-
-function onIntent(nlp, input) {
-  console.dir(input.intent);
-  if (input.intent === 'user.buy') {
-      const output = input;
-      
-      return output;
+const { dockStart } = require("@nlpjs/basic");
+const axios = require("axios");
+var userId = null;
+async function onIntent(nlp, input) {
+  if (input.intent === "product.buy") {
+    const output = input;
+    await axios
+      .post("http://localhost:8000/api/makeOrder", {
+        product: input.entities[0].option, user_id: userId
+      })
+      .then((res) => {
+        output.answer = "Done. You order has been place check the shopping tab";
+      })
+      .catch((error) => {
+        output.answer = "Whooops. Seems a problem occurred on our end";
+      });
+    return output;
   }
   return input;
 }
 
-const get = async function(message){
-    const dock = await dockStart({ use: ['Basic']});
-    const nlp = dock.get('nlp');
-    await nlp.addCorpus('http://localhost:8000/storage/corpus-en.json');
-    nlp.onIntent = onIntent;
-    await nlp.train();
-    const response = await nlp.process('en', message);
-    return response.answer;
-}
+const get = async function (message, user_id) {
+  userId = user_id;
+  const dock = await dockStart({ use: ["Basic"] });
+  const nlp = dock.get("nlp");
+  const newLocal = "./corpus-en.json";
+  await nlp.addCorpus(newLocal);
+  await nlp.train();
+  nlp.onIntent = onIntent;
+  const response = await nlp.process("en", message);
+  return response.answer;
+};
 
 module.exports = {
-    get
+  get,
 };

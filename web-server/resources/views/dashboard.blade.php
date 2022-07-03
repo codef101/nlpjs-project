@@ -87,47 +87,6 @@
 
     <script>
         $(document).ready(() => {
-            const {
-                containerBootstrap,
-                Nlp,
-                LangEn,
-                fs
-            } = window.nlpjs;
-
-            function onIntent(nlp, input) {
-                console.dir(input.intent);
-                if (input.intent === 'greetings.hello') {
-                    const hours = new Date().getHours();
-                    const output = input;
-                    if (hours < 12) {
-                        output.answer = 'Good morning!';
-                    } else if (hours < 17) {
-                        output.answer = 'Good afternoon!';
-                    } else {
-                        output.answer = 'Good evening!';
-                    }
-                    return output;
-                }
-                return input;
-            }
-
-            const setupNLP = async corpus => {
-                const container = containerBootstrap();
-                container.register('fs', fs);
-                container.use(Nlp);
-                container.use(LangEn);
-                const nlp = container.get('nlp');
-                nlp.onIntent = onIntent;
-                nlp.settings.autoSave = false;
-                await nlp.addCorpus(corpus);
-                nlp.train();
-                return nlp;
-            };
-
-            const onChatSubmit = async (message, nlp) => {
-                const response = await nlp.process('en-US', message);
-                return response.answer;
-            };
 
             /******************/
             /*** START CHAT ***/
@@ -182,7 +141,7 @@
 
 
             function botReply(userMessage) {
-                $.post("http://localhost:5000/message",{'message':userMessage} , function(data, status){
+                $.post("http://localhost:5000/message",{'message':userMessage, 'user_id': {{ Auth::user()->id}}} , function(data, status){
                     postBotReply(data);
                 });
             };

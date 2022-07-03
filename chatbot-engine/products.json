@@ -1,0 +1,10 @@
+{
+  "soko": {
+    "price": "240",
+    "quantity": "2kg"
+  },
+  "rice": {
+    "price": "120",
+    "quantity": "1kg"
+  }
+}

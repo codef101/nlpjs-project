@@ -40,6 +40,9 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $product = Product::where('title', '=', $request->product)->first();
+        if (empty($product)) {
+            return response(['message' => "product not found"], 403);
+        }
         $order = Order::create([
             'user_id' => $request->user_id ,
             'status' => 'pending',
@@ -83,9 +86,10 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOrderRequest $request, Order $order)
+    public function update(Request $request, $order)
     {
-        //
+        Order::find($order)->update($request->all());
+        return redirect(route('admin.orders.index'));
     }
 
     /**
@@ -96,6 +100,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return redirect(route('admin.orders.index'));
     }
 }

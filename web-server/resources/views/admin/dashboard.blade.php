@@ -53,7 +53,7 @@
                                                     Orders
                                                 </h5>
                                                 <span class="font-semibold text-xl text-blueGray-700">
-                                                    10
+                                                    {{$orders}}
                                                 </span>
                                             </div>
                                             <div class="relative w-auto pl-4 flex-initial">
@@ -84,7 +84,7 @@
                                                     Total Users
                                                 </h5>
                                                 <span class="font-semibold text-xl text-blueGray-700">
-                                                    2
+                                                    {{$users}}
                                                 </span>
                                             </div>
                                             <div class="relative w-auto pl-4 flex-initial">
@@ -115,7 +115,7 @@
                                                     Products
                                                 </h5>
                                                 <span class="font-semibold text-xl text-blueGray-700">
-                                                    5
+                                                    {{$products}}
                                                 </span>
                                             </div>
                                             <div class="relative w-auto pl-4 flex-initial">

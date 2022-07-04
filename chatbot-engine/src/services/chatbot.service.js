@@ -14,16 +14,22 @@ var userId = null;
 async function onIntent(nlp, input) {
   if (input.intent === "product.buy") {
     const output = input;
-    await axios
-      .post("http://localhost:8000/api/makeOrder", {
-        product: input.entities[0].option, user_id: userId
-      })
-      .then((res) => {
-        output.answer = "Done. You order has been place check the shopping tab";
-      })
-      .catch((error) => {
-        output.answer = "Whooops. Seems a problem occurred on our end";
-      });
+    if (input.entities.length === 0) {
+      output.answer = "Sorry can't find that product on my manifest";
+    } else {
+      await axios
+        .post("http://localhost:8000/api/makeOrder", {
+          product: input.entities[0].option,
+          user_id: userId,
+        })
+        .then((res) => {
+          output.answer =
+            "Done. You order has been place check the shopping tab";
+        })
+        .catch((error) => {
+          output.answer = "Error occurred seems product is not available";
+        });
+    }
     return output;
   }
   return input;

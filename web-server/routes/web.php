@@ -32,7 +32,7 @@ Route::group(['auth'], function() {
 Route::group(['middleware' => ['auth'], 'prefix' => 'a', 'as' => 'admin.'], function() {
     Route::get('dashboard', [AdminController::class,'dashboard'])->name('dashboard');
     Route::get('knowledge', [AdminController::class,'knowledge'])->name('knowledge');
-    Route::get('update-corpus', [AdminController::class,'update-corpus'])->name('corpus');
+    Route::post('update-corpus', [AdminController::class,'update_corpus'])->name('corpus');
     Route::resource('products', ProductController::class);
     Route::resource('orders', OrderController::class);
     Route::resource('order-details', OrderDetailsController::class);

@@ -10,8 +10,7 @@
             <nav
                 class="absolute top-0 left-0 w-full z-10 bg-pink-500 md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
                 <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
-                    <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-                        href="">Orders</a>
+                    <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold" href="">Orders</a>
                     {{-- <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
                         <div class="relative flex w-full flex-wrap items-stretch">
                             <span
@@ -22,8 +21,7 @@
                         </div>
                     </form> --}}
                     <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
-                        <a class="text-blueGray-500 block" href="#pablo"
-                            onclick="openDropdown(event,'user-dropdown')">
+                        <a class="text-blueGray-500 block" href="#pablo" onclick="openDropdown(event,'user-dropdown')">
                             <div class="items-center flex">
                                 <span
                                     class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img
@@ -55,25 +53,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($orders as $order)
-                        <tr>
-                            <td>{{ $order->id}}</td>
-                            <td>{{ $order->user->name}}</td>
-                            <td>{{ $order->order_total}}</td>
-                            <td>{{ $order->status}}</td>
-                            <td>{{ $order->created_at}}</td>
-                            <td>{{ $order->updated_at}}</td>
-                            <td>
-                                <div class="inline-flex rounded-md shadow-sm" role="group">
-                                    <button type="button" class="py-2 px-4 text-sm font-medium text-blue-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                                      Edit
-                                    </button>
-                                    <button type="button" class="py-2 px-4 text-sm font-medium text-red-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                                      Delete
-                                    </button>
-                                  </div>
-                            </td>
-                        </tr>
+                        @foreach ($orders as $order)
+                            <tr>
+                                <td>{{ $order->id }}</td>
+                                <td>{{ $order->user->name }}</td>
+                                <td>{{ $order->order_total }}</td>
+                                <td>
+                                    <form action="{{ route('admin.orders.update', ['order' => $order->id]) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <select name="status" id="status">
+                                            <option value="{{ $order->status }}">{{ $order->status }}</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="confirmed">confirmed</option>
+                                            <option value="purchased">purchased</option>
+                                            <option value="delivered">delivered</option>
+                                        </select>
+                                        <button type="submit"
+                                            class="py-2 px-4 text-sm font-medium text-blue-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                            change
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>{{ $order->created_at }}</td>
+                                <td>{{ $order->updated_at }}</td>
+                                <td>
+                                    <div class="inline-flex rounded-md shadow-sm" role="group">
+                                        <form action="{{ route('admin.orders.destroy',[ 'order' => $order->id])}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="py-2 px-4 text-sm font-medium text-red-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                                Delete
+                                              </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
@@ -91,13 +107,12 @@
             </div>
         </div>
     </div>
-
 @endsection
 @section('scripts')
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" ></script>
-<script>
-    $(document).ready(function () {
-    $('#example').DataTable();
-});
-</script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
 @endsection

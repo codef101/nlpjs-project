@@ -10,5 +10,9 @@
 	"test": {
 		"price": "123",
 		"quantity": "bar"
+	},
+	"ballpoint": {
+		"price": "12",
+		"quantity": "unit"
 	}
 }

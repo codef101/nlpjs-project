@@ -8,14 +8,13 @@
   Copyright IBM Corporation 2020
 */
 
-const express = require('express');
+const express = require("express");
 const router = express.Router({ mergeParams: true });
 
-const chatbotController = require('../controllers/chatbot.controller');
+const chatbotController = require("../controllers/chatbot.controller");
 
-router.route('/')
-    .post(chatbotController.get);
-router.route('/corpus')
-    .get(chatbotController.getCorpus);
+router.route("/").post(chatbotController.get);
+router.route("/corpus").get(chatbotController.getCorpus);
+router.route("/add-knowledge").post(chatbotController.addKnowledge);
 
 module.exports = router;

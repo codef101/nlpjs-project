@@ -70,12 +70,16 @@
                             <td>{{$product->updated_at}}</td>
                             <th>
                                 <div class="inline-flex rounded-md shadow-sm" role="group">
-                                    <button type="button" class="py-2 px-4 text-sm font-medium text-blue-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                    <a href="{{ route('admin.products.edit',[ 'product' => $product->id])}}" type="button" class="py-2 px-4 text-sm font-medium text-blue-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
                                       Edit
-                                    </button>
-                                    <button type="button" class="py-2 px-4 text-sm font-medium text-red-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                                      Delete
-                                    </button>
+                                    </a>
+                                    <form action="{{ route('admin.products.destroy',[ 'product' => $product->id])}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="py-2 px-4 text-sm font-medium text-red-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                            Delete
+                                          </button>
+                                    </form>
                                   </div>
                             </th>
                         </tr>

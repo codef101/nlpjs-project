@@ -16,7 +16,6 @@ const get = async function (req, res) {
 };
 
 const getCorpus = function (req, res) {
-  var data = {};
   fs.readFile("./corpus-en.json", "utf8", (err, data) => {
     if (err) {
       console.error(err);
@@ -27,7 +26,25 @@ const getCorpus = function (req, res) {
   });
 };
 
+const addKnowledge = function (req, res) {
+  var products = './products.json';
+  var corpus = './corpus-en.json';
+  
+  var m = JSON.parse(fs.readFileSync(products).toString());
+  let title = req.body.title;
+  m[title] = { price: req.body.price, quantity: req.body.unit};
+  fs.writeFileSync(products, JSON.stringify(m,null, '\t'));
+
+  var file = JSON.parse(fs.readFileSync(corpus).toString());
+  console.dir(file);
+  file['entities']['product']['options'][title] = [title];
+  fs.writeFileSync(corpus, JSON.stringify(file,null, '\t'));
+
+  res.send({'message':"file products file updated"});
+};
+
 module.exports = {
   get,
   getCorpus,
+  addKnowledge
 };

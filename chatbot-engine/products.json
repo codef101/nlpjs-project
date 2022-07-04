@@ -1,10 +1,14 @@
 {
-  "soko": {
-    "price": "240",
-    "quantity": "2kg"
-  },
-  "rice": {
-    "price": "120",
-    "quantity": "1kg"
-  }
+	"soko": {
+		"price": "240",
+		"quantity": "2kg"
+	},
+	"rice": {
+		"price": "120",
+		"quantity": "1kg"
+	},
+	"test": {
+		"price": "123",
+		"quantity": "bar"
+	}
 }

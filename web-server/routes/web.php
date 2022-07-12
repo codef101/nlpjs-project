@@ -29,7 +29,7 @@ Route::group(['auth'], function() {
     Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
 });
 
-Route::group(['middleware' => ['auth'], 'prefix' => 'a', 'as' => 'admin.'], function() {
+Route::group(['middleware' => ['role:admin','auth'], 'prefix' => 'a', 'as' => 'admin.'], function() {
     Route::get('dashboard', [AdminController::class,'dashboard'])->name('dashboard');
     Route::get('knowledge', [AdminController::class,'knowledge'])->name('knowledge');
     Route::post('update-corpus', [AdminController::class,'update_corpus'])->name('corpus');
@@ -37,6 +37,5 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'a', 'as' => 'admin.'], func
     Route::resource('orders', OrderController::class);
     Route::resource('order-details', OrderDetailsController::class);
 });
-
 
 require __DIR__.'/auth.php';

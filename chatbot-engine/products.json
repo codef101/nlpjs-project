@@ -14,5 +14,9 @@
 	"ballpoint": {
 		"price": "12",
 		"quantity": "unit"
+	},
+	"sembe": {
+		"price": "10",
+		"quantity": "kg"
 	}
 }
